@@ -1,0 +1,16 @@
+---
+layout: post
+title: Named instances for ActiveRecord
+date: '2009-10-08T12:00:00.000-07:00'
+author: Jason Dew
+tags:
+- rails
+- ruby
+- opensource
+- gem
+modified_time: '2013-03-22T06:02:16.970-07:00'
+blogger_id: tag:blogger.com,1999:blog-7252006856404953359.post-6077592610716396436
+blogger_orig_url: https://blog.jasondew.com/2009/10/named-instances-for-activerecord.html
+---
+
+<p>For a project that I'm working on at my day job, we have a governmental client for which we are building a pretty large and complicated online/offline Ruby on Rails application.  As part of this app there are tons of data-specific rules.  For example, if a client with HIV is being assessed then certain fields may have to be displayed/hidden and there are rules that get applied differently.  So lets say you have the following setup:</p><p><a href="http://gist.github.com/205241">http://gist.github.com/205241</a></p><p>Now, somewhere in your code you want to be able to do take a specific action only if that client has a particular diagnosis.  Without named_instances you might do something like:</p><p><a href="http://gist.github.com/205250">http://gist.github.com/205250</a></p><p>With named_instances you can do the following faster and more concise code:</p><p><a href="http://gist.github.com/205253">http://gist.github.com/205253</a></p><p>We've been using this functionality for about 6 months now and its been great.  The gem is out on <a href="http://gemcutter.org/gems/named_instances">GemCutter</a> (which rocks) and the repo is at <a href="http://github.com/jasondew/named_instances">GitHub</a>.  Hopefully it will be useful in your projects.  Comments, criticisms, and patches welcome.</p>

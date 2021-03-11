@@ -1,0 +1,13 @@
+---
+layout: post
+title: The importance of a good algorithm
+date: '2010-07-09T18:15:00.000-07:00'
+author: Jason Dew
+tags:
+- haskell
+modified_time: '2013-03-22T06:02:16.949-07:00'
+blogger_id: tag:blogger.com,1999:blog-7252006856404953359.post-6899067977013874755
+blogger_orig_url: https://blog.jasondew.com/2010/07/the-importance-of-good-algorithm.html
+---
+
+<p>I'm studying for the computer science Ph.D. qualifying exam and so I've started going back through my algorithms book (Intro to Algorithms by Cormen, Leiserson, Rivest, and Stein).  The first chapter was, of course, about motivating the study of algorithms.  One exercise that made an impression on me was the one that had you generate a table giving the largest problem you could solve in different amounts of time given different asymptotically complex algorithms.</p><p>Since I take every opportunity to make progress learning Haskell, I coded it up:</p><p>What the table shows is the largest value of n you could process given an algorithm of certain complexity and a certain amount of time:</p><table> <tr><th>f(n)</th> <th>1 sec.</th> <th>1 min.</th> <th>1 hour</th> <th>1 day</th> <th>1 month</th> <th>1 year</th> <th>1 century</th></tr> <tr><th>lg(n)</th><td>2.7e43</td><td>∞*</td><td>∞*</td><td>∞*</td><td>∞*</td><td>∞*</td><td>∞*</td></tr><tr><th>sqrt(n)</th><td>10000</td><td>3.6e8</td><td>1.3e11</td><td>7.5e13</td><td>6.7e16</td><td>9.7e18</td><td>9.7e22</td></tr><tr><th>n</th><td>100</td><td>6000</td><td>3.6e5</td><td>8.6e6</td><td>2.6e8</td><td>3.1e9</td><td>3.1e11</td></tr><tr><th>n lg(n)</th><td>29</td><td>884</td><td>34458</td><td>6.5e5</td><td>1.6e7</td><td>1.6e8</td><td>1.3e10</td></tr><tr><th>n^2</th><td>10</td><td>77</td><td>600</td><td>2939</td><td>16099</td><td>55770</td><td>5.6e5</td></tr><tr><th>n^3</th><td>4</td><td>17</td><td>68</td><td>194</td><td>597</td><td>1357</td><td>6203</td></tr><tr><th>2^n</th><td>6</td><td>12</td><td>18</td><td>23</td><td>27</td><td>31</td><td>38</td></tr><tr><th>n!</th><td>4</td><td>7</td><td>8</td><td>10</td><td>11</td><td>12</td><td>14</td></tr></table><p>* The values here aren't really infinity <em>but</em> they are over 300 digits!</p><p>So the lesson here?  Having an algorithm with a good asymptotic complexity makes a huge difference in the amount of data it is feasible to process.  Just look at the difference between linear complexity (n) and logarithmic complexity (lg n): 41 orders of magnitude!</p>

@@ -1,0 +1,12 @@
+---
+layout: post
+title: 'coded_options: A new Ruby gem for coded fields'
+date: '2010-07-12T14:57:00.000-07:00'
+author: Jason Dew
+tags:
+modified_time: '2013-03-22T06:02:16.994-07:00'
+blogger_id: tag:blogger.com,1999:blog-7252006856404953359.post-5929387524622874031
+blogger_orig_url: https://blog.jasondew.com/2010/07/codedoptions-new-ruby-gem-for-coded.html
+---
+
+<p>I recently started a couple new projects (Rails 3 + mongoid) and I've noticed a pattern in the way I handle coded fields.  My key example is something like the following: you have a field, say status, that can have several values, say active, closed, and invalid.  Obviously you could store those as strings in the database or you can code them, say 0, 1, and 2.  Normal database practice is to code them as integers to save space but a far more important concern is that clients change their mind about what you call things.  So its much easier to just change the string values in some code than it is to go changing every string in the database.</p><p>Anyway, the usage is something like this (yanked directly from the README):</p><p>Here line 4 (the coded_options call) basically gets mapped into lines 6 through 14.  Nothing spectacular but it's really cleaned up my code quite a bit so maybe it will be useful to some other folks.  The code is up on github (<a href="http://github.com/jasondew/coded_options">http://github.com/jasondew/coded_options</a>) and the gem is on gemcutter (<a href="http://rubygems.org/gems/coded_options">http://rubygems.org/gems/coded_options</a>).</p>

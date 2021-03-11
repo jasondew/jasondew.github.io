@@ -1,0 +1,13 @@
+---
+layout: post
+title: Profiling Darwin, Functionality added to Haskell GD bindings
+date: '2009-02-13T12:00:00.000-08:00'
+author: Jason Dew
+tags:
+- haskell
+modified_time: '2013-03-22T06:02:16.976-07:00'
+blogger_id: tag:blogger.com,1999:blog-7252006856404953359.post-91313401414280814
+blogger_orig_url: https://blog.jasondew.com/2009/02/profiling-darwin-functionality-added-to.html
+---
+
+<p>So I've been working on the  <a href="http://github.com/jasondew/darwin/tree/master">Darwin</a> hobby project again recently and decided to find out where the program is spending all of it's time.  It turns out that there are some <a href="http://book.realworldhaskell.org/read/profiling-and-optimization.html">really nice profiling tools</a> in Haskell (GHC to be specific).  Armed with that, I found out rather quickly that the bottleneck was the getPixel function I added to the GD bindings.</p><p><a href="http://gist.github.com/470216">http://gist.github.com/470216</a></p><p>My first thought was that it would be nice to grab all of the pixels at once instead of repeated (slow) calls to getPixel.  So I read up on Haskell FFI and the GD documentation and churned out the following:</p><p>This code returns a nice Haskell array of arrays with the color information.  This improved the speed from 1 minute per 10 iterations to 1 second per 10 iterations -- about a 60x improvement!</p><p>However, this only works with true color images at this point; no indexed palette support since that information gets stored elsewhere in the GD image struct.  All in all, it was a very pleasant and rewarding experience into Haskell.  Next on the list is (Erlang-style maybe?) parallelization.</p><p>BTW, the GD binding code is under the dependencies folder <a href="http://github.com/jasondew/darwin">here</a>.</p>
