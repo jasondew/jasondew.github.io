@@ -12,4 +12,10 @@ blogger_id: tag:blogger.com,1999:blog-7252006856404953359.post-78559470717829658
 blogger_orig_url: https://blog.jasondew.com/2009/09/weirdest-test-failure-ever.html
 ---
 
-<p>So based on some customer feedback on a project I'm currently working on, I added a validation requiring that one of the dates be in the past.  The validation is pretty straightforward:</p><p><a href="http://gist.github.com/188474">http://gist.github.com/188474</a></p><p>After re-running the test suite though, I got a couple of failures.  After digging into the code, it turns out that the following code snippit evaluates to true!</p><p><a href="http://gist.github.com/188475">http://gist.github.com/188475</a></p><p>Of course this makes no sense.  What's more is that I tried the code again while writing this blog post and now its false.  So I did some digging into the Ruby internals and it turns out that Time#&lt; is implemented in C in the following method:</p><p><a href="http://gist.github.com/189385">http://gist.github.com/189385</a></p><p>The best I can come up with is that there's an problem with the GetTimeval method since its just a macro that pulls out some data from a time struct -- but the Date class is implemented in pure Ruby.  Anyone come across this or can explain better?</p>
+<p>So based on some customer feedback on a project I'm currently working on, I added a validation requiring that one of the dates be in the past.  The validation is pretty straightforward:</p>
+{% gist 188474 %}
+<p>After re-running the test suite though, I got a couple of failures.  After digging into the code, it turns out that the following code snippit evaluates to true!</p>
+{% gist 188475 %}
+<p>Of course this makes no sense.  What's more is that I tried the code again while writing this blog post and now its false.  So I did some digging into the Ruby internals and it turns out that <code>Time</code> is implemented in C in the following method:</p>
+{% gist 189385 %}
+<p>The best I can come up with is that there's an problem with the GetTimeval method since its just a macro that pulls out some data from a time struct -- but the Date class is implemented in pure Ruby.  Anyone come across this or can explain better?</p>
