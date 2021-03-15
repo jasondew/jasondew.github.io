@@ -73,8 +73,8 @@ main:
 
 I copied this into `cpuid.s` and found [this Stack Overflow article](https://stackoverflow.com/questions/4288921/hello-world-using-x86-assembler-on-mac-0sx) about compiling
 assembly code on MacOS (using `gcc -o cpuid cpuid.s`). Unfortunately, there were
-errors! The first error was an `invalid alignment value` on the `.align 32` instruction.
-I figured that it wasn't necessary, so I removed it and moved on to the next error!
+errors. The first error was an `invalid alignment value` on the `.align 32` instruction.
+I figured that it wasn't necessary, so I removed it and moved on to the next error.
 That got me to `32-bit absolute addressing is not supported in 64-bit mode` on the
 `movq $s0,%rdi` instruction. After a fair bit of searching, I managed to come across
 the [`lea` instruction](https://code-examples.net/en/q/319865), which loads the effective address of a static value using
