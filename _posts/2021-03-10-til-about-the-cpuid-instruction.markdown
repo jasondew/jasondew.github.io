@@ -2,7 +2,7 @@
 layout: post
 title:  "TIL about the cpuid instruction"
 date:   2021-03-10 20:37:47 -0500
-categories: assembly
+tags: assembly osdev
 ---
 
 So I've been trying to learn Rust more deeply lately, and one thing I found
