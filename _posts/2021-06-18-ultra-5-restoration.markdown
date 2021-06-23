@@ -134,7 +134,7 @@ Session completed
 
 At this point, I was able to log in (the root password was `kenn98`) and
 immerse myself in nostalgia.  I struggled a bit because I don't have a mouse,
-but I was able to find some shortcut keys to let use the window manager. The
+but I was able to find some shortcut keys to let me use the window manager. The
 terminal emulator brought back the most memories. I was suprised to see that
 Netscape Navigator was even installed!
 
