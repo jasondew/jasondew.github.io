@@ -26,6 +26,9 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jasondew
 github_username:  jasondew
+jekyll_analytics:
+  GoogleAnalytics:
+    id: "UA-7348077-1"
 port: 8080
 
 # Build settings
