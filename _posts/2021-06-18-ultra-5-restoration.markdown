@@ -2,7 +2,7 @@
 layout: post
 title:  "Restoring a Sun Microsystems Ultra 5"
 date:   2021-06-18 16:22:00 -0500
-tags: retro
+tags:   retro
 ---
 
 My first "computer job" was working as the assistant sysadmin for the Math
