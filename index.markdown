@@ -5,3 +5,4 @@
 layout: home
 ---
 {% include analytics.html %}
+{% include mastodon_verification.html %}

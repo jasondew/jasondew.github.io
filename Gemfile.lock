@@ -276,7 +276,7 @@ DEPENDENCIES
   github-pages
   jekyll-feed (~> 0.12)
   jekyll-import
-  minima (~> 2.5)
+  minima
 
 BUNDLED WITH
    1.17.2
