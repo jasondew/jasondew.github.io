@@ -5,66 +5,30 @@ date:   2026-09-08 20:00:00 -0400
 tags:   elixir,machinelearning,ai
 ---
 
-Fill in the blank: **flees**, or **flee**?
+I gave a talk to the AI guild at work today called *Transformers from Scratch,
+in Elixir* explaining attention and the transformer architecture.
 
-![the llama who chases the dogs: flees, or flee](/assets/tiny-llm-the-vote.jpg)
+A large part of why I decided to give the talk was to more deeply understand
+attention and the transformer architecture myself. So, I decided to implement a
+very small model in Elixir, completely from scratch -- no libraries allowed. I
+cut the vocabulary down to just 32 words, used a single block and head of
+attention. It comes in at just over 15k parameters and trains in about 75
+seconds on my laptop and gets the noun verb agreement correct.
 
-Everybody gets it. The rule is easy to state: the verb agrees with its
-subject. The hard part is knowing which noun is the subject when a plural one
-is sitting right next to the blank. That was the whole of a talk I gave this
-week: one sentence, one forward pass through a transformer small enough to
-read, and the question of whether it learned that rule.
-
-The model is [tiny_llm](https://github.com/jasondew/tiny_llm). It is pure
-Elixir with an empty dependency list: no Nx, no GPU, no tokenizer. Thirty-two
-words, one attention head, one block, 15,104 floats. It trains in about 77
-seconds on a laptop, and it did so live on the first slide while the room was
-arriving. The slides are a Phoenix LiveView app,
-[tiny_llm_talk](https://github.com/jasondew/tiny_llm_talk), and every number
-on every slide is read from the trained model at render time.
-
-## Where will the blank look?
-
-The blank is predicted from the last position given, *dogs*, so I asked the
-room: which word does the *dogs* row attend to most? Most people said
-*llama*, the subject. The model said **who**, at 64.8%.
+The part that surprised me: for *the llama who chases the dogs ____*, the
+position predicting the blank puts 65% of its attention on *who*, not on
+*llama*. Then *who* puts 68% of its attention on *llama*. The model reaches the
+subject in two hops, through the pronoun that stands for it. Nobody designed
+that; it fell out of training.
 
 ![where will the blank look](/assets/tiny-llm-where-the-blank-looks.jpg)
 
-That looked wrong to me too, until I looked at the *who* row: 68.5% of its
-attention is on *llama*. The blank reaches the subject in two hops, through
-the pronoun that stands for it. Nobody designed that. It fell out of
-training, and it is a small, checkable example of why these models feel
-strange from the outside.
-
-## It learned it
-
-Training is five sentences: take a prefix from the corpus where we know the
-next word, run the model, measure how surprised it was by the real word,
-nudge every number in the direction that makes the surprise smaller, repeat
-a few hundred times. The corpus comes from a grammar I wrote, so "did it
-learn agreement across a relative clause" is a measurement, not a vibe.
-
-![training, live](/assets/tiny-llm-training-live.jpg)
-
-The dashed line at 1.904 is the best any model can do by looking only at the
-previous word. The transformer lands at 1.577. That gap is the model using
-information the previous word does not carry, which for this sentence means
-looking past *dogs* to *llama*. On the sentence itself it puts *flees* at
-18.7% and *flee* at 14.7%. Not a landslide, but the right way round.
-
-## Watching it write
-
-The deck ends with the model writing a paragraph one word at a time, with
-its forward pass drawn beside each word.
+For the talk, I created a Phoenix LiveView app that actually runs the model
+live. Here's it running, showing its work:
 
 ![the model writing, with its forward pass beside it](/assets/tiny-llm-writer.gif)
 
-What is not in it: a tokenizer, a GPU, multi-head attention, depth, KV
-caching. Everything else that is in a frontier model is in this one. The
-difference is thirteen orders of magnitude and a tokenizer.
+The talk covered embeddings, position embeddings, attention, feed forward networks, and the transformer architecture. Both repos are public if you'd like to check them out!
 
-Both repos are public:
-[github.com/jasondew/tiny_llm](https://github.com/jasondew/tiny_llm) and
-[github.com/jasondew/tiny_llm_talk](https://github.com/jasondew/tiny_llm_talk).
-Run `mix phx.server` and press start.
+- [github.com/jasondew/tiny_llm](https://github.com/jasondew/tiny_llm)
+- [github.com/jasondew/tiny_llm_talk](https://github.com/jasondew/tiny_llm_talk)
