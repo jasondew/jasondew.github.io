@@ -18,8 +18,7 @@ seconds on my laptop and gets the noun verb agreement correct.
 The part that surprised me: for *the llama who chases the dogs ____*, the
 position predicting the blank puts 65% of its attention on *who*, not on
 *llama*. Then *who* puts 68% of its attention on *llama*. The model reaches the
-subject in two hops, through the pronoun that stands for it. Nobody designed
-that; it fell out of training.
+subject in two hops instead of directly. LLMs are unintuitive!
 
 ![where will the blank look](/assets/tiny-llm-where-the-blank-looks.jpg)
 
