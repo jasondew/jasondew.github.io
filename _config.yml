@@ -23,7 +23,7 @@ email: jason.dew@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Just a programmer writing about code things.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://blog.jasondew.com" # the base hostname & protocol for your site
 
 twitter_username: jasondew
 github_username: jasondew
