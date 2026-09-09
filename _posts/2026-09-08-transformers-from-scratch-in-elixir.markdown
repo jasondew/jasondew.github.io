@@ -3,6 +3,7 @@ layout: post
 title: "Transformers from Scratch, in Elixir"
 date:   2026-09-08 20:00:00 -0400
 tags:   elixir,machinelearning,ai
+image:  /assets/tiny-llm-where-the-blank-looks.jpg
 ---
 
 I gave a talk to the AI guild at work today called *Transformers from Scratch,
