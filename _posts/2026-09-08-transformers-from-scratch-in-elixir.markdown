@@ -1,33 +1,38 @@
 ---
 layout: post
 title: "Transformers from Scratch, in Elixir"
-date:   2026-09-08 20:30:00 -0500
-tags:   elixir,machinelearning
+date:   2026-09-08 20:00:00 -0400
+tags:   elixir,machinelearning,ai
 ---
 
 Fill in the blank: **flees**, or **flee**?
 
 ![the llama who chases the dogs: flees, or flee](/assets/tiny-llm-the-vote.jpg)
 
-Everybody gets it. The llama flees. The rule is easy to state: the verb
-agrees with its subject. The hard part is knowing which noun is the subject
-when a plural one is sitting right next to the blank. That was the whole
-talk I gave this week, *Transformers from Scratch, in Elixir*: one sentence,
-one forward pass through a transformer small enough to read, and the
-question of whether it learned that rule.
+The answer is **flees** but why? The verb needs to agree with the subject, but
+think about what the model needs to look in to understand that relationship. It
+doesn't look at the previous word but several words back to "llama." The
+attention mechanism is how it learns that.
 
-The model is [tiny_llm](https://github.com/jasondew/tiny_llm). It is pure
-Elixir with an empty dependency list: no Nx, no GPU, no tokenizer. Thirty-two
-words, one attention head, one block, 15,104 floats in total. It trains in
-about 77 seconds on a laptop. The slides are a Phoenix LiveView app,
-[tiny_llm_talk](https://github.com/jasondew/tiny_llm_talk), and every number
-on every slide is read from the trained model at render time, so nothing on
-screen is a drawing of what the model does. It is what the model does.
+I gave a talk to our AI guild today called *Transformers from Scratch, in
+Elixir* explaining the attention mechanism and also the basic transformer
+architecture.
+
+A large part of why I decided to give the talk was to more deeply understand
+attention and the transformer achitecture myself. So, I decided to implement a
+very small model in Elixir, completely from scratch -- no libraries allowed. I
+cut the vocabulary down to just 32 words, used a single block and head of
+attention. It comes in at just over 15k parameters and trains in ~70 seconds on
+my laptop and gets the noun verb agreement correct. The source code is in
+Github at [tiny_llm](https://github.com/jasondew/tiny_llm).
+
+For the talk, I created a Phoenix LiveView app that actually runs the model
+live.
 
 ## A language model is one function
 
-The frame for the whole talk: the words so far go in, and 32 probabilities
-come out, one per word. Everything else is inside the box.
+At the highest level, an LLM is a function that takes a sequence of words and
+returns a probability distribution.
 
 ![the words so far, a language model, 32 probabilities](/assets/tiny-llm-one-function.jpg)
 
